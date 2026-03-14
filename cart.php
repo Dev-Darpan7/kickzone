@@ -64,30 +64,9 @@ if (!empty($_SESSION['cart'])) {
         $cart_items[] = $row;
     }
 }
+
+include 'includes/header.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Cart - KickZone</title>
-<link rel="stylesheet" href="shoe.css">
-</head>
-<body>
-
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-logo"><h2>KickZone</h2></div>
-    <ul class="nav-menu">
-      <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="products.php" class="nav-link">Products</a></li>
-      <li class="nav-item"><a href="my_orders.php" class="nav-link">Orders</a></li>
-      <li class="nav-item nav-link">Welcome, <?php echo $user; ?></li>
-      <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
-    </ul>
-  </div>
-</nav>
 
 <section class="featured">
 <h2>Your Cart</h2>
@@ -158,5 +137,4 @@ if (!empty($_SESSION['cart'])) {
 </div>
 </section>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

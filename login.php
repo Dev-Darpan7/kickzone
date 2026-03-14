@@ -24,28 +24,11 @@ if (isset($_POST["login"])) {
         $message = "Invalid email or password";
     }
 }
+
+include 'includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Login - KickZone</title>
-  <link rel="stylesheet" href="shoe.css">
-</head>
-<body>
 
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-logo"><h2>KickZone</h2></div>
-    <ul class="nav-menu">
-      <li><a href="index.php" class="nav-link">Home</a></li>
-      <li><a href="products.php" class="nav-link">Products</a></li>
-      <li><a href="register.php" class="nav-link">Register</a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="auth-container">
+<div class="auth-container" style="margin-top: 6rem; margin-bottom: 2rem;">
   <h2>Login</h2>
 
   <?php if ($message) { ?>
@@ -61,5 +44,4 @@ if (isset($_POST["login"])) {
   <a href="register.php">Create new account</a>
 </div>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

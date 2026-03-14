@@ -28,21 +28,19 @@ $payment_status = $order['payment_status'];
 $total = $order['total_price'];
 $txn_id = $order['transaction_id'] ?? '';
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Order Success - KickZone</title>
-
 <style>
+/* Override default nav background for this page */
+.navbar { position: relative; }
 body{
   margin:0;
   font-family: Arial, sans-serif;
-  background:#e9edf3;
+  background:#000;
+  padding-top: 0;
+  color:#fff;
 }
 
 .overlay{
-  height:100vh;
+  height:calc(100vh - 80px); /* Adjust for navbar */
   display:flex;
   align-items:center;
   justify-content:center;
@@ -51,96 +49,169 @@ body{
 .box{
   width:1000px;
   height:560px;
-  background:#fff;
-  border-radius:18px;
-  box-shadow:0 30px 80px rgba(0,0,0,0.25);
+  background:#111;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.8);
   display:flex;
   overflow:hidden;
+  border: 1px solid #333;
 }
 
 /* LEFT PANEL */
 .left{
   width:35%;
-  background:linear-gradient(135deg,#2d6cdf,#2446b8);
+  background:linear-gradient(135deg,#0a1128,#162447);
   color:#fff;
-  padding:40px;
+  padding:50px 40px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  border-right: 1px solid #222;
+}
+
+.left h2{
+  font-size:28px;
+  margin-bottom:25px;
+  letter-spacing:1px;
+}
+
+.left div > div:nth-child(2){
+  color:#aaa;
+  font-size:15px;
+  margin-bottom:5px;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
 .price{
-  font-size:30px;
+  font-size:38px;
   font-weight:bold;
-  margin-top:10px;
+  color:#00ff88;
+}
+
+.left > div:last-child{
+  color:#888;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.left > div:last-child::before{
+  content:'🎉';
+  font-size:18px;
 }
 
 /* RIGHT PANEL */
 .right{
   width:65%;
-  padding:40px;
+  padding:50px;
   position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
 .success-icon{
   font-size:70px;
-  color:#16a34a;
-  margin-bottom:15px;
+  color:#00ff88;
+  margin-bottom:20px;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
 }
 
 h2{
-  margin-bottom:10px;
+  margin-bottom:15px;
+  font-size:32px;
+  letter-spacing:1px;
+}
+
+.right > p {
+  color: #aaa;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .details{
-  margin-top:30px;
-  font-size:16px;
+  margin-top:40px;
+  font-size:15px;
+  background: #151515;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #222;
 }
 
 .details p{
-  margin:12px 0;
+  margin:15px 0;
+  display:flex;
+  justify-content:space-between;
+  border-bottom: 1px dashed #333;
+  padding-bottom: 15px;
+}
+
+.details p:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .label{
-  font-weight:bold;
+  color: #888;
+  font-weight:600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.details span:last-child {
+  font-weight: bold;
+  color: #fff;
 }
 
 .buttons{
   margin-top:40px;
+  display:flex;
+  gap:15px;
 }
 
 .btn{
   display:inline-block;
-  padding:14px 22px;
-  border-radius:8px;
+  padding:16px 28px;
+  border-radius:10px;
   text-decoration:none;
   font-weight:bold;
-  margin-right:10px;
+  font-size:15px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  transition:all 0.3s;
+  text-align:center;
+  flex:1;
 }
 
 .primary{
-  background:#0a2540;
+  background:#007AFF;
   color:#fff;
+  box-shadow:0 8px 20px rgba(0,122,255,0.3);
 }
 
 .primary:hover{
-  background:#163d68;
+  background:#005bb5;
+  transform:translateY(-2px);
 }
 
 .secondary{
-  background:#e5e7eb;
-  color:#000;
+  background:#222;
+  color:#fff;
+  border: 1px solid #444;
 }
 
 .secondary:hover{
-  background:#d1d5db;
+  background:#333;
+  transform:translateY(-2px);
 }
 </style>
-</head>
+<?php include 'includes/header.php'; ?>
 
-<body>
-
-<div class="overlay">
+<div class="overlay" style="margin-top: 4rem; margin-bottom: 2rem;">
 <div class="box">
 
 <div class="left">
@@ -178,5 +249,4 @@ h2{
 </div>
 </div>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

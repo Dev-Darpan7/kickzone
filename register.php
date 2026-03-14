@@ -28,37 +28,12 @@ if (isset($_POST["register"])) {
         exit();
     }
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register - KickZone</title>
-  <link rel="stylesheet" href="shoe.css">
-</head>
-<body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-logo"><h2>KickZone</h2></div>
-      <ul class="nav-menu">
-        <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="products.php" class="nav-link">Products</a></li>
-        <?php if (isset($_SESSION["user"])) { ?>
-          <li class="nav-item nav-link">Welcome, <?php echo $_SESSION["user"]; ?></li>
-          <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
-        <?php } else { ?>
-          <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
-          <li class="nav-item"><a href="register.php" class="nav-link">Register</a></li>
-        <?php } ?>
-      </ul>
-    </div>
-  </nav>
+include 'includes/header.php';
+?>
 
   <!-- REGISTER SECTION -->
-  <section class="auth-section">
+  <section class="auth-section" style="margin-top: 3rem; margin-bottom: 2rem;">
     <div class="auth-container">
       <h2>Register</h2>
 
@@ -77,6 +52,4 @@ if (isset($_POST["register"])) {
     </div>
   </section>
 
-  <script src="shoe.js"></script>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

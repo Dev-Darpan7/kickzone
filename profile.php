@@ -15,33 +15,12 @@ if (!$data) {
     echo "User not found";
     exit;
 }
+
+include 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>My Profile - KickZone</title>
-<link rel="stylesheet" href="shoe.css">
-</head>
-<body>
-
-<!-- NAVBAR (same as your site) -->
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-logo"><h2>KickZone</h2></div>
-    <ul class="nav-menu">
-      <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="products.php" class="nav-link">Products</a></li>
-      <li class="nav-item"><a href="cart.php" class="nav-link">Cart</a></li>
-      <li class="nav-item"><a href="my_orders.php" class="nav-link">Orders</a></li>
-      <li class="nav-item nav-link">Welcome, <?php echo $_SESSION['user']; ?></li>
-      <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
-    </ul>
-  </div>
-</nav>
-
 <!-- PROFILE UI -->
-<section class="account-wrapper">
+<section class="account-wrapper" style="margin-top: 3rem; margin-bottom: 2rem;">
 
   <!-- LEFT SIDEBAR -->
   <div class="account-sidebar">
@@ -102,5 +81,4 @@ if (!$data) {
 
 </section>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

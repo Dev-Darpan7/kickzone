@@ -18,21 +18,19 @@ if (!$query || mysqli_num_rows($query) == 0) {
 $order = mysqli_fetch_assoc($query);
 $total = floatval($order['total_price']);
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Payment - KickZone</title>
-
 <style>
+/* Override default nav background for this page */
+.navbar { position: relative; }
 body{
   margin:0;
   font-family: Arial, sans-serif;
-  background:#e9edf3;
+  background:#000;
+  padding-top: 0;
+  color:#fff;
 }
 
 .overlay{
-  height:100vh;
+  height:calc(100vh - 80px); /* Adjust for navbar */
   display:flex;
   align-items:center;
   justify-content:center;
@@ -41,28 +39,58 @@ body{
 .box{
   width:1000px;
   height:560px;
-  background:#fff;
-  border-radius:18px;
-  box-shadow:0 30px 80px rgba(0,0,0,0.25);
+  background:#111;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.8);
   display:flex;
   overflow:hidden;
   position:relative;
+  border: 1px solid #333;
 }
 
 /* LEFT */
 .left{
   width:35%;
-  background:linear-gradient(135deg,#2d6cdf,#2446b8);
+  background:linear-gradient(135deg,#0a1128,#162447);
   color:#fff;
-  padding:40px;
+  padding:50px 40px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  border-right: 1px solid #222;
+}
+
+.left h2{
+  font-size:28px;
+  margin-bottom:25px;
+  letter-spacing:1px;
+}
+
+.left div > div:nth-child(2){
+  color:#aaa;
+  font-size:15px;
+  margin-bottom:5px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.left > div:last-child{
+  color:#888;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.left > div:last-child::before{
+  content:'🔒';
+  font-size:18px;
 }
 
 .price{
-  font-size:30px;
+  font-size:38px;
   font-weight:bold;
+  color:#00ff88;
 }
 
 /* RIGHT */
@@ -73,102 +101,159 @@ body{
 
 /* MENU */
 .menu{
-  width:35%;
-  background:#f6f8fb;
-  padding:25px;
-  border-right:1px solid #eee;
+  width:32%;
+  background:#151515;
+  padding:30px 20px;
+  border-right:1px solid #222;
 }
 
 .menu div{
-  padding:12px;
-  border-radius:8px;
-  margin-bottom:8px;
+  padding:16px;
+  border-radius:10px;
+  margin-bottom:12px;
   cursor:pointer;
+  color:#aaa;
+  font-weight:500;
+  transition:all 0.3s ease;
 }
 
 .menu div.active{
-  background:#dde7ff;
-  font-weight:bold;
+  background:#222;
+  color:#fff;
+  box-shadow:0 4px 15px rgba(0,0,0,0.4);
+  border-left:4px solid #007AFF;
 }
 
-.menu div:hover{
-  background:#e8efff;
+.menu div:hover:not(.active){
+  background:#1a1a1a;
+  color:#ddd;
 }
 
 /* CONTENT */
 .content{
-  width:65%;
-  padding:30px;
+  width:68%;
+  padding:40px;
+  position:relative;
 }
 
 .timer{
   text-align:right;
-  font-size:14px;
-  color:#666;
+  font-size:13px;
+  color:#777;
+  margin-bottom:25px;
+}
+
+#time{
+  color:#ff4a4a;
+  font-weight:bold;
 }
 
 /* QR */
 .qr-box{
-  background:#f4f6f9;
-  padding:20px;
-  border-radius:14px;
+  background:#000;
+  padding:30px;
+  border-radius:16px;
   text-align:center;
+  margin-top:10px;
+  border:1px dashed #444;
+}
+
+.qr-box p{
+  color:#aaa;
   margin-top:15px;
+  font-size:14px;
 }
 
 .qr-box img{
-  width:170px;
+  width:160px;
+  border-radius:8px;
+  padding:10px;
+  background:#fff;
 }
 
 /* INPUTS */
 input, select{
   width:100%;
-  padding:10px;
-  margin-top:10px;
-  border:1px solid #ccc;
-  border-radius:6px;
+  padding:16px;
+  margin-top:15px;
+  background:#000;
+  color:#fff;
+  border:1px solid #333;
+  border-radius:10px;
+  font-size:15px;
+  transition:all 0.3s;
+  box-sizing:border-box;
+}
+
+input:focus, select:focus{
+  border-color:#007AFF;
+  outline:none;
+  box-shadow:0 0 0 3px rgba(0,122,255,0.2);
+}
+
+input::placeholder{
+  color:#666;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 15px;
 }
 
 button{
-  margin-top:15px;
+  margin-top:30px;
   width:100%;
-  padding:14px;
-  background:#0a2540;
+  padding:18px;
+  background:#007AFF;
   color:#fff;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   font-weight:bold;
+  font-size:16px;
   cursor:pointer;
+  transition:all 0.3s;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
 button:hover{
-  background:#163d68;
+  background:#005bb5;
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,122,255,0.3);
 }
 
 .loader{
   display:none;
-  margin-top:15px;
+  margin-top:20px;
   text-align:center;
   font-weight:bold;
+  color:#007AFF;
+  font-size:15px;
 }
 
 .success{
   display:none;
   position:absolute;
+  top:0; left:0;
   width:100%;
   height:100%;
-  background:#16a34a;
-  color:#fff;
+  background:rgba(0,255,136,0.95);
+  color:#000;
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  font-size:22px;
+  font-size:28px;
+  font-weight:bold;
+  z-index:10;
+  backdrop-filter:blur(5px);
 }
 </style>
-</head>
-<body>
+<?php include 'includes/header.php'; ?>
 
-<div class="overlay">
+<div class="overlay" style="margin-top: 4rem; margin-bottom: 2rem;">
 <div class="box" id="box">
 
 <div class="left">
@@ -247,7 +332,10 @@ Redirecting...
 <script>
 
 /* TAB SWITCH */
+let currentTab = 'upi';
+
 function showTab(tab,el){
+  currentTab = tab;
   document.querySelectorAll('.menu div').forEach(x=>x.classList.remove('active'));
   el.classList.add('active');
 
@@ -283,6 +371,29 @@ let timer = setInterval(function(){
 
 /* FAKE PROCESS */
 function processPayment(){
+  let isValid = false;
+  
+  if (currentTab === 'upi') {
+    let upiInput = document.querySelector('#upi input').value.trim();
+    if (upiInput !== '') isValid = true;
+  } else if (currentTab === 'card') {
+    let inputs = document.querySelectorAll('#card input');
+    if (inputs[0].value.trim() !== '' && inputs[1].value.trim() !== '' && inputs[2].value.trim() !== '') {
+      isValid = true;
+    }
+  } else if (currentTab === 'netbanking') {
+    let select = document.querySelector('#netbanking select').value;
+    if (select !== 'Select Bank') isValid = true;
+  } else if (currentTab === 'wallet') {
+    let select = document.querySelector('#wallet select').value;
+    if (select !== 'Select Wallet') isValid = true;
+  }
+  
+  if (!isValid) {
+    alert("Please fill in the required payment details for the selected method.");
+    return;
+  }
+
   document.getElementById("loader").style.display="block";
 
   setTimeout(()=>{
@@ -295,5 +406,4 @@ function processPayment(){
 
 </script>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

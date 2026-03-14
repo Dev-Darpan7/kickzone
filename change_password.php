@@ -28,17 +28,11 @@ if (isset($_POST['change'])) {
         $type = "error";
     }
 }
+
+include 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Change Password - KickZone</title>
-<link rel="stylesheet" href="shoe.css">
-</head>
-<body>
-
-<section class="account-wrapper">
+<section class="account-wrapper" style="margin-top: 3rem; margin-bottom: 2rem;">
 
   <!-- SIDEBAR -->
   <div class="account-sidebar">
@@ -91,5 +85,4 @@ if (isset($_POST['change'])) {
 
 </section>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

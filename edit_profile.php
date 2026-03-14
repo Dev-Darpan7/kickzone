@@ -28,17 +28,11 @@ if (isset($_POST['update'])) {
 
 $res = mysqli_query($conn, "SELECT * FROM users WHERE name='$user'");
 $data = mysqli_fetch_assoc($res);
+
+include 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Edit Profile - KickZone</title>
-<link rel="stylesheet" href="shoe.css">
-</head>
-<body>
-
-<section class="account-wrapper">
+<section class="account-wrapper" style="margin-top: 3rem; margin-bottom: 2rem;">
 
   <!-- SIDEBAR (same as profile.php) -->
   <div class="account-sidebar">
@@ -98,5 +92,4 @@ $data = mysqli_fetch_assoc($res);
 
 </section>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

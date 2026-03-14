@@ -8,39 +8,12 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user = $_SESSION['user'];   // using username (STRING)
+
+include 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My Orders - KickZone</title>
-  <link rel="stylesheet" href="shoe.css">
-</head>
-<body>
-
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-logo"><h2>KickZone</h2></div>
-    <ul class="nav-menu">
-      <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="products.php" class="nav-link">Products</a></li>
-      <li class="nav-item"><a href="my_orders.php" class="nav-link">Orders</a></li>
-      <li class="nav-item nav-link">Welcome, <?php echo $_SESSION['user']; ?></li>
-      <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
-
-      <?php if (isset($_SESSION['admin'])) { ?>
-        <li class="nav-item">
-            <a href="admin/index.php" class="nav-link">Admin Panel</a>
-        </li>
-      <?php } ?>
-    </ul>
-  </div>
-</nav>
-
 <!-- Orders Section -->
-<section class="account-wrapper">
+<section class="account-wrapper" style="margin-top: 3rem; margin-bottom: 2rem;">
 
   <!-- SIDEBAR -->
   <div class="account-sidebar">
@@ -113,5 +86,4 @@ if (!$orders || mysqli_num_rows($orders) == 0) {
 
 </section>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>

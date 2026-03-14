@@ -27,59 +27,217 @@ while ($row = mysqli_fetch_assoc($res)) {
     $qty = $_SESSION['cart'][$row['id']];
     $total += $row['price'] * $qty;
 }
+
+include 'includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Checkout - KickZone</title>
-  <link rel="stylesheet" href="shoe.css">
-</head>
-<body>
+<style>
+/* PREMIUM CHECKOUT DESIGN */
+body {
+  background: #000;
+  color: #fff;
+}
+.checkout-wrapper {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-logo"><h2>KickZone</h2></div>
-    <ul class="nav-menu">
-      <li class="nav-item"><a href="cart.php" class="nav-link">Cart</a></li>
-      <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
-    </ul>
-  </div>
-</nav>
+.checkout-split {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.checkout-left, .checkout-right {
+  background: #111;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  border: 1px solid #333;
+}
+
+.checkout-left {
+  flex: 1.5;
+}
+
+.checkout-right {
+  flex: 1;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.checkout-split h2 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.checkout-total {
+  background: #151515;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 25px;
+  border: 1px solid #222;
+}
+
+.checkout-total span {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  color: #00ff88;
+  margin-top: 10px;
+}
+
+.checkout-form input[type="text"],
+.checkout-form textarea {
+  width: 100%;
+  padding: 16px;
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-family: inherit;
+  font-size: 15px;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.checkout-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+  border-color: #007AFF;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.2);
+}
+
+.payment-title {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #222;
+  padding-bottom: 10px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  background: #000;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.payment-option:hover {
+  background: #1a1a1a;
+  border-color: #555;
+}
+
+.payment-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  accent-color: #007AFF;
+}
+
+.payment-option div strong {
+  display: block;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.payment-option div p {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 18px;
+  background: #007AFF;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #005bb5;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,122,255,0.3);
+}
+
+@media (max-width: 800px) {
+  .checkout-split {
+    flex-direction: column;
+  }
+}
+</style>
 
 <!-- CHECKOUT UI -->
 <section class="checkout-wrapper">
-  <div class="checkout-card">
+  <form method="post" action="place_order.php" class="checkout-split">
+    
+    <!-- LEFT SIDE: Delivery Details -->
+    <div class="checkout-left">
+      <h2>Delivery Details</h2>
+      
+      <div class="checkout-form">
+        <input type="text" name="name" placeholder="Full Name"
+          value="<?php echo htmlspecialchars($profile['name'] ?? $user); ?>" required>
 
-    <h2>Checkout</h2>
+        <input type="text" name="phone" placeholder="Phone"
+          value="<?php echo htmlspecialchars($profile['phone'] ?? ''); ?>" required>
 
-    <div class="checkout-total">
-      Total Amount: <span>₹<?php echo $total; ?></span>
+        <textarea name="address" placeholder="Full Address" required><?php echo htmlspecialchars($profile['address'] ?? ''); ?></textarea>
+
+        <input type="text" name="city" placeholder="City"
+          value="<?php echo htmlspecialchars($profile['city'] ?? ''); ?>" required>
+
+        <input type="text" name="pincode" placeholder="Pincode"
+          value="<?php echo htmlspecialchars($profile['pincode'] ?? ''); ?>" required>
+      </div>
     </div>
 
-    <form method="post" action="place_order.php" class="checkout-form">
+    <!-- RIGHT SIDE: Order Summary & Payment -->
+    <div class="checkout-right">
+      <h2>Order Summary</h2>
+      
+      <div class="checkout-total">
+        Total Amount <span>₹<?php echo $total; ?></span>
+      </div>
 
-      <!-- ADDRESS SECTION -->
-      <h3>Delivery Details</h3>
-
-      <input type="text" name="phone" placeholder="Phone"
-        value="<?php echo $profile['phone'] ?? ''; ?>" required>
-
-      <textarea name="address" placeholder="Full Address" required><?php echo $profile['address'] ?? ''; ?></textarea>
-
-      <input type="text" name="city" placeholder="City"
-        value="<?php echo $profile['city'] ?? ''; ?>" required>
-
-      <input type="text" name="pincode" placeholder="Pincode"
-        value="<?php echo $profile['pincode'] ?? ''; ?>" required>
-
-      <!-- PAYMENT OPTIONS -->
-      <h3>Payment Method</h3>
+      <div class="payment-title">Payment Method</div>
 
       <!-- COD -->
       <label class="payment-option">
-        <input type="radio" name="payment_method" value="COD" checked>
+        <input type="radio" name="payment_method" value="COD" required>
         <div>
           <strong>Cash on Delivery</strong>
           <p>Pay when your order arrives</p>
@@ -88,19 +246,17 @@ while ($row = mysqli_fetch_assoc($res)) {
 
       <!-- ONLINE -->
       <label class="payment-option">
-        <input type="radio" name="payment_method" value="ONLINE">
+        <input type="radio" name="payment_method" value="ONLINE" required>
         <div>
           <strong>Pay Online</strong>
-          <p>UPI / Card / NetBanking (Demo)</p>
+          <p>UPI / Card / NetBanking</p>
         </div>
       </label>
 
       <button class="checkout-btn">Continue</button>
+    </div>
 
-    </form>
-
-  </div>
+  </form>
 </section>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
