@@ -1,11 +1,10 @@
 <?php
-$host = getenv('MYSQLHOST');
-$user = getenv('MYSQLUSER');
-$pass = getenv('MYSQLPASSWORD');
-$db   = getenv('MYSQLDATABASE');
-$port = getenv('MYSQLPORT');
+$host = "sql206.infinityfree.com";
+$user = "if0_41429261";
+$pass = "jOgANcL1ZiCJc5";
+$db   = "if0_41429261_kickzone";
 
-$conn = mysqli_connect($host, $user, $pass, $db, (int)$port);
+$conn = mysqli_connect($host, $user, $pass, $db);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
