@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin'])) {
 // Secure status update
 if (isset($_POST['order_id'], $_POST['status'])) {
     $id = intval($_POST['order_id']);
-    $allowed_status = ['Pending', 'Completed'];
+    $allowed_status = ['Pending', 'Completed', 'Cancelled'];
 
     if (in_array($_POST['status'], $allowed_status)) {
         $status = mysqli_real_escape_string($conn, $_POST['status']);
@@ -85,6 +85,7 @@ $orders = mysqli_query(
                                 <select name="status" class="admin-select">
                                     <option value="Pending" <?php if($o['status']=='Pending') echo 'selected'; ?>>Pending</option>
                                     <option value="Completed" <?php if($o['status']=='Completed') echo 'selected'; ?>>Completed</option>
+                                    <option value="Cancelled" <?php if($o['status']=='Cancelled') echo 'selected'; ?>>Cancelled</option>
                                 </select>
                                 <button type="submit" class="admin-btn small-btn">
                                     <i class="fa fa-save"></i> Update

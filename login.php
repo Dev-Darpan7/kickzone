@@ -41,7 +41,13 @@ include 'includes/header.php';
     <button type="submit" name="login">Login</button>
   </form>
 
-  <a href="register.php">Create new account</a>
+  <p style="margin-top:1rem; font-size:0.9rem;">
+    <a href="forgot_password.php" style="color:#aaa;">Forgot Password?</a>
+  </p>
+
+  <p style="margin-top:0.5rem; font-size:0.95rem;">
+    <a href="register.php">Create new account</a>
+  </p>
 </div>
 
 <?php include 'includes/footer.php'; ?>

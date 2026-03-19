@@ -49,7 +49,7 @@ if (!isset($_SESSION)) {
 
 <li class="nav-item"><a href="cart.php" class="nav-link">Cart</a></li>
 <li class="nav-item"><a href="my_orders.php" class="nav-link">Orders</a></li>
-<li class="nav-item"><a href="profile.php" class="nav-link">Welcome, <?php echo htmlspecialchars($_SESSION["user"]); ?></a></li>
+<li class="nav-item"><a href="profile.php" class="nav-link">My Profile</a></li>
 <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
 
 <?php } else { ?>
