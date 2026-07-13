@@ -1,4 +1,4 @@
-# 👟 KickZone
+#  KickZone
 
 KickZone is a responsive e-commerce website for sneaker and shoe enthusiasts, built using **PHP, MySQL, JavaScript, HTML, and CSS**. It allows users to browse footwear, manage their cart, place orders, and securely manage their accounts through a clean and user-friendly interface.
 
