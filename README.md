@@ -162,13 +162,13 @@ This project helped me strengthen my understanding of:
 
 ## 🔮 Future Improvements
 
-* Product search
-* Product categories and filters
-* Product reviews and ratings
-* Email notifications
-* Online payment gateway integration
-* Inventory management
-* Sales dashboard for admins
+* Product search.
+* Product categories and filters.
+* Product reviews and ratings.
+* Email notifications.
+* Online payment gateway integration.
+* Inventory management.
+* Sales dashboard for admins.
 
 ---
 
